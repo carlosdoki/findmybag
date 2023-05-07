@@ -1,8 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 
 class LocationClient {
   final Location _location = Location();
+  final CollectionReference malasCollection = FirebaseFirestore.instance
+      .collection('locations')
+      .doc('mala')
+      .collection('rastreamento');
 
   Stream<LatLng> get locationStream => _location.onLocationChanged
       .map((event) => LatLng(event.latitude!, event.longitude!));
@@ -25,5 +30,9 @@ class LocationClient {
 
   Future<bool> isServiceEnabled() async {
     return _location.serviceEnabled();
+  }
+
+  Stream<QuerySnapshot> get malas {
+    return malasCollection.orderBy('tipo', descending: true).snapshots();
   }
 }

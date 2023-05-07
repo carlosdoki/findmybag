@@ -9,7 +9,7 @@ class AppText extends StatelessWidget {
     return Text(
       text,
       style: const TextStyle(
-        fontSize: 22,
+        fontSize: 18,
         color: Colors.black,
       ),
     );
