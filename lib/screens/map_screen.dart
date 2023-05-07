@@ -257,17 +257,20 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
         .doc('mala')
         .collection('rastreamento');
 
-    Random random = new Random();
-    LatLng _ramdom = LatLng(-23.4902178391228, -46.83564241296433);
-    _malas.add(_ramdom);
-    _ramdom = LatLng(-23.4902178391250, -46.83564241296450);
-    _malas.add(_ramdom);
-    _ramdom = LatLng(-23.4902178391280, -46.83564241296450);
-    _malas.add(_ramdom);
-    _ramdom = LatLng(-23.4902178391300, -46.83564241296450);
-    _malas.add(_ramdom);
+    setState(() {
+      Random random = new Random();
+      LatLng _ramdom = LatLng(-23.4902178391228, -46.83564241296433);
+      _malas.add(_ramdom);
+      _ramdom = LatLng(-23.4902178391250, -46.83564241296450);
+      _malas.add(_ramdom);
+      _ramdom = LatLng(-23.4902178391280, -46.83564241296450);
+      _malas.add(_ramdom);
+      _ramdom = LatLng(-23.4902178391300, -46.83564241296450);
+      _malas.add(_ramdom);
 
-    _currMala = _ramdom;
+      _currMala = _ramdom;
+    });
+
     print("Mala");
   }
 }
