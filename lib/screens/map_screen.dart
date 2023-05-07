@@ -35,9 +35,9 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
     super.initState();
     _locationClient.init();
     _listenLocation();
-    _getMalas();
     Timer.periodic(const Duration(seconds: 3), (timer) {
       _listenLocation();
+      _getMalas();
       // _calculateDistance();
     });
   }
@@ -187,7 +187,8 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                                   ),
                                   Text(
                                     'Última atualização:' +
-                                        FieldValue.serverTimestamp().toString(),
+                                        DateFormat.yMMMd()
+                                            .format(DateTime.now()),
                                     style: TextStyle(
                                       fontSize: 10,
                                     ),
