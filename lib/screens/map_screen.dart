@@ -36,6 +36,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
     super.initState();
     _locationClient.init();
     _listenLocation();
+    _getMalas();
     Timer.periodic(const Duration(seconds: 3), (timer) {
       _listenLocation();
       _getMalas();
@@ -95,21 +96,6 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                             color: Colors.blue,
                             strokeWidth: 4,
                           ),
-                        ],
-                      ),
-                      if (_currPosition != null)
-                        MarkerLayer(
-                          markers: [
-                            Marker(
-                              point: _currPosition!,
-                              builder: (context) => const Icon(Icons.person),
-                            ),
-                          ],
-                        ),
-                      //Mala
-                      PolylineLayer(
-                        polylineCulling: false,
-                        polylines: [
                           Polyline(
                             points: _malas,
                             color: Colors.brown,
@@ -117,15 +103,39 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                           ),
                         ],
                       ),
-                      if (_currMala != null)
-                        MarkerLayer(
-                          markers: [
-                            Marker(
-                              point: _currMala!,
-                              builder: (context) => const Icon(Icons.backpack),
-                            ),
-                          ],
-                        ),
+                      // if (_currPosition != null)
+                      MarkerLayer(
+                        markers: [
+                          Marker(
+                            point: _currPosition!,
+                            builder: (context) => const Icon(Icons.person),
+                          ),
+                          Marker(
+                            point: _currMala!,
+                            builder: (context) => const Icon(Icons.backpack),
+                          ),
+                        ],
+                      ),
+                      //Mala
+                      // PolylineLayer(
+                      //   polylineCulling: false,
+                      //   polylines: [
+                      //     Polyline(
+                      //       points: _malas,
+                      //       color: Colors.brown,
+                      //       strokeWidth: 4,
+                      //     ),
+                      //   ],
+                      // ),
+                      // if (_currMala != null)
+                      //   MarkerLayer(
+                      //     markers: [
+                      //       Marker(
+                      //         point: _currMala!,
+                      //         builder: (context) => const Icon(Icons.backpack),
+                      //       ),
+                      //     ],
+                      //   ),
                     ],
                   ),
                 ),
@@ -232,7 +242,9 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                                   ),
                                   Text(
                                     'Última atualizaçao:' +
-                                        FieldValue.serverTimestamp().toString(),
+                                        DateFormat.yMd()
+                                            .add_jm()
+                                            .format(DateTime.now()),
                                     style: TextStyle(
                                       fontSize: 10,
                                     ),
