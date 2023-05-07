@@ -8,6 +8,7 @@ import 'package:findmybag/services/location_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
 
 import '../widgets/app_text.dart';
@@ -187,7 +188,8 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                                   ),
                                   Text(
                                     'Última atualização:' +
-                                        DateFormat.yMMMd()
+                                        DateFormat.yMd()
+                                            .add_jm()
                                             .format(DateTime.now()),
                                     style: TextStyle(
                                       fontSize: 10,
@@ -266,7 +268,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
     _malas.add(_ramdom);
 
     _currMala = _ramdom;
-    print(_ramdom.latitude.toString());
+    print("Mala");
   }
 }
 
