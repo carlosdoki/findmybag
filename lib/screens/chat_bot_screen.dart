@@ -64,46 +64,6 @@ class ChatBotScreen extends StatelessWidget {
           ),
         ],
       ),
-      // body: Column(
-      //   mainAxisAlignment: MainAxisAlignment.end,
-      //   children: [
-      //     Expanded(
-      //       child: Align(
-      //         alignment: Alignment.bottomLeft,
-      //         child: GroupedListView<Message, DateTime>(
-      //           padding: EdgeInsets.all(8),
-      //           reverse: true,
-      //           order: GroupedListOrder.DESC,
-      //           elements: messages,
-      //           groupBy: (message) => DateTime(2023),
-      //           groupHeaderBuilder: (Message message) => SizedBox(),
-      //           itemBuilder: (context, Message message) => Align(
-      //             alignment: message.isSentByMe
-      //                 ? Alignment.centerRight
-      //                 : Alignment.centerLeft,
-      //             child: Card(
-      //               color: message.isSentByMe ? Colors.blue : Colors.white,
-      //               elevation: 8,
-      //               child: Padding(
-      //                 padding: EdgeInsets.all(12),
-      //                 child: Text(message.text),
-      //               ),
-      //             ),
-      //           ),
-      //         ),
-      //       ),
-      //     ),
-      //     Container(
-      //       color: Colors.grey.shade300,
-      //       child: const TextField(
-      //         decoration: InputDecoration(
-      //           contentPadding: EdgeInsets.all(12),
-      //           hintText: 'Type your message here ',
-      //         ),
-      //       ),
-      //     ),
-      //   ],
-      // ),
     );
   }
 }

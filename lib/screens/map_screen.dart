@@ -35,9 +35,9 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
     super.initState();
     _locationClient.init();
     _listenLocation();
+    _getMalas();
     Timer.periodic(const Duration(seconds: 3), (timer) {
       _listenLocation();
-      _getMalas();
       // _calculateDistance();
     });
   }
@@ -186,7 +186,8 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                                     height: 5,
                                   ),
                                   Text(
-                                    'Última localidade:',
+                                    'Última atualização:' +
+                                        FieldValue.serverTimestamp().toString(),
                                     style: TextStyle(
                                       fontSize: 10,
                                     ),
@@ -227,7 +228,8 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                                     height: 10,
                                   ),
                                   Text(
-                                    'Última localidade:',
+                                    'Última atualizaçao:' +
+                                        FieldValue.serverTimestamp().toString(),
                                     style: TextStyle(
                                       fontSize: 10,
                                     ),
@@ -253,9 +255,17 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
         .collection('rastreamento');
 
     Random random = new Random();
+    LatLng _ramdom = LatLng(-23.4902178391228, -46.83564241296433);
+    _malas.add(_ramdom);
+    _ramdom = LatLng(-23.4902178391250, -46.83564241296450);
+    _malas.add(_ramdom);
+    _ramdom = LatLng(-23.4902178391280, -46.83564241296450);
+    _malas.add(_ramdom);
+    _ramdom = LatLng(-23.4902178391300, -46.83564241296450);
+    _malas.add(_ramdom);
 
-    _malas.add(LatLng(-23.4902178391228 + random.nextDouble() * 100,
-        -46.83564241296433 + random.nextDouble() * 100));
+    _currMala = _ramdom;
+    print(_ramdom.latitude.toString());
   }
 }
 

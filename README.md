@@ -1,6 +1,9 @@
-# findmybag
+# Find My Bag
 
-A new Flutter project.
+Aplicação em flutter com conexão de banco de dados Firebase.
+Push notification.
+Twilio para notificacao para WhatsApp.
+
 
 ## Getting Started
 
