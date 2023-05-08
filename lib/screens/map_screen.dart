@@ -30,6 +30,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
   LatLng? _currPosition;
   LatLng? _currPositionAnt;
   bool _isServiceRunning = false;
+  int _contador = 0;
 
   @override
   void initState() {
@@ -39,6 +40,9 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
     _getMalas();
     Timer.periodic(const Duration(seconds: 3), (timer) {
       _listenLocation();
+      // _calculateDistance();
+    });
+    Timer.periodic(const Duration(seconds: 5), (timer) {
       _getMalas();
       // _calculateDistance();
     });
@@ -61,6 +65,12 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
     } else {
       _isServiceRunning = false;
     }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
@@ -93,13 +103,18 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                         polylines: [
                           Polyline(
                             points: _points,
-                            color: Colors.blue,
-                            strokeWidth: 4,
-                          ),
-                          Polyline(
-                            points: _malas,
                             color: Colors.brown,
                             strokeWidth: 4,
+                          ),
+                        ],
+                      ),
+                      PolylineLayer(
+                        polylineCulling: false,
+                        polylines: [
+                          Polyline(
+                            points: _malas,
+                            color: Colors.blue,
+                            strokeWidth: 5,
                           ),
                         ],
                       ),
@@ -108,11 +123,20 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                         markers: [
                           Marker(
                             point: _currPosition!,
-                            builder: (context) => const Icon(Icons.person),
+                            builder: (context) => const Icon(
+                              Icons.person,
+                            ),
                           ),
+                        ],
+                      ),
+                      MarkerLayer(
+                        markers: [
                           Marker(
                             point: _currMala!,
-                            builder: (context) => const Icon(Icons.backpack),
+                            builder: (context) => const Icon(
+                              Icons.work,
+                              size: 30,
+                            ),
                           ),
                         ],
                       ),
@@ -270,20 +294,26 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
         .collection('rastreamento');
 
     setState(() {
-      Random random = new Random();
-      LatLng _ramdom = LatLng(-23.4902178391228, -46.83564241296433);
+      LatLng _ramdom = LatLng(-23.575416948440562, -46.62334877113724);
       _malas.add(_ramdom);
-      _ramdom = LatLng(-23.4902178391250, -46.83564241296450);
+      _ramdom = LatLng(-23.576416948440580, -46.62334877213750);
       _malas.add(_ramdom);
-      _ramdom = LatLng(-23.4902178391280, -46.83564241296450);
+      _ramdom = LatLng(-23.577416948441600, -46.62334877313755);
       _malas.add(_ramdom);
-      _ramdom = LatLng(-23.4902178391300, -46.83564241296450);
+      _ramdom = LatLng(-23.578426948442600, -46.62335877413770);
       _malas.add(_ramdom);
-
+      _ramdom = LatLng(-23.578436948442600, -46.62336877413770);
+      _malas.add(_ramdom);
+      _ramdom = LatLng(-23.578456948442600, -46.62337877413770);
+      _malas.add(_ramdom);
+      _ramdom = LatLng(-23.578476948442600, -46.62338877413770);
+      _malas.add(_ramdom);
+      _ramdom = LatLng(-23.578476948442600, -46.62339877413770);
+      _malas.add(_ramdom);
       _currMala = _ramdom;
     });
 
-    print("Mala");
+    // print("Mala");
   }
 }
 
